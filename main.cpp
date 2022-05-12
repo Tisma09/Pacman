@@ -6,11 +6,32 @@
 #define xmax 32
 #define ymin 0
 #define ymax 15
+#include <random>
+#include <ctime>
+
+
 
 bool deplacer_personnage(int* x, int* y, std::string cmd);
 
 class ExceptionBounds{};
 class ExceptionCommand{};
+class ennemis_negatifs{};
+class ExceptionSizeTab{};
+
+class Ennemi {
+private:
+    int pos_x, pos_y;
+public:
+    virtual void new_pos();
+    int deplacer(int x, int y);
+};
+class Clyde: public Ennemi{
+    void new_pos(){
+    srand(time(NULL));
+    int val = rand() % 5;
+}
+};
+
 
 bool detecter_collision(int ennemis_x[], int ennemis_y[], int nb_ennemis, int x, int y );
 
@@ -23,14 +44,15 @@ void exeption_nb_ennemis(int nb_ennemis)
 
 int main(int argc, char** argv)
 {
-int x=5, y=4;
+    int x=5, y=4;
+    int nb_éléments;
     int enn_x[4] = {1, 2, 3, 4}, enn_y[4]= {1, 2, 3, 4};
 
     try
     {
-        exeption_nb_ennemis();
+        exeption_nb_ennemis(4);
     }
-catch (ennemis_negatifs&)
+    catch (ennemis_negatifs&)
        {
            std::cout << "Nombre d'ennemis incorrect" << std::endl;
        }
@@ -40,24 +62,40 @@ catch (ennemis_negatifs&)
         std::cout << "Collision" << std::endl;
     }
 
-int* x_addr = &x;
-int* y_addr = &y;
-while(true){
-    std::string saisie;
-    std::getline(std::cin, saisie);
-    try{
-        deplacer_personnage(x_addr, y_addr, saisie);
+    int* x_addr = &x;
+    int* y_addr = &y;
+    while(true){
+        std::string saisie;
+        std::getline(std::cin, saisie);
+        try{
+            deplacer_personnage(x_addr, y_addr, saisie);
+        }
+        catch(ExceptionBounds){
+            std::cout << "Hors limite";
+        }
+        catch(ExceptionCommand){
+            std::cout << "Commande non reconnue";
+        }
     }
-    catch(ExceptionBounds){
-        std::cout << "Hors limite";
+    try {
+        if(nb_éléments<=0)
+            throw(ExceptionSizeTab);
     }
-    catch(ExceptionCommand){
-        std::cout << "Commande non reconnue";
+    catch(ExceptionSizeTab){
+        std::cout << "Nombre d'élements incorrect" << std::endl;
     }
+    try {
+        detecter_collision(enn_x, enn_y, 4, x, y);
+    }
+    catch () {
+    }
+    try {
+        detecter_collision(enn_x, enn_y, -1, x, y);
+    }
+    catch () {
+    }
+    return 0;
 }
-return 0;
-}
-
 
 bool deplacer_personnage(int& x, int& y, std::string cmd)
 {
@@ -104,9 +142,6 @@ bool detecter_collision(int ennemis_x[], int ennemis_y[], int nb_ennemis, int x,
         else
             return false;
     }
-class ExceptionSizeTap
-{
-    private:
-    public:
 }
+
 
