@@ -1,9 +1,8 @@
-QT       += core gui
+QT       += core gui statemachine
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++17
-CONFIG += console
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -11,9 +10,24 @@ CONFIG += console
 
 SOURCES += \
     main.cpp \
+    animatedwidget.cpp \
+    background.cpp \
+    drawable.cpp \
+    drawableelem.cpp \
+    interactive.cpp \
+    movable.cpp \
+    regularmove.cpp \
     mainwindow.cpp
 
 HEADERS += \
+    animatedwidget.h \
+    background.h \
+    consts.h \
+    drawable.h \
+    drawableelem.h \
+    interactive.h \
+    movable.h \
+    regularmove.h \
     mainwindow.h
 
 FORMS += \
