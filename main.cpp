@@ -1,36 +1,25 @@
 #include "mainwindow.h"
 #include <QApplication>
+
 #include <iostream>
 #include <string>
-#define xmin 0
-#define xmax 32
-#define ymin 0
-#define ymax 15
 #include <random>
 #include <ctime>
+
+#include "exception.h"
+#include "personnage.h"
+#include "ennemi.h"
+#include "clyde.h"
+
+
+
 
 
 
 bool deplacer_personnage(int* x, int* y, std::string cmd);
 
-class ExceptionBounds{};
-class ExceptionCommand{};
-class ennemis_negatifs{};
-class ExceptionSizeTab{};
 
-class Ennemi {
-private:
-    int pos_x, pos_y;
-public:
-    virtual void new_pos();
-    int deplacer(int x, int y);
-};
-class Clyde: public Ennemi{
-    void new_pos(){
-    srand(time(NULL));
-    int val = rand() % 5;
-}
-};
+
 
 
 bool detecter_collision(int ennemis_x[], int ennemis_y[], int nb_ennemis, int x, int y );
@@ -62,13 +51,13 @@ int main(int argc, char** argv)
         std::cout << "Collision" << std::endl;
     }
 
-    int* x_addr = &x;
-    int* y_addr = &y;
+    Personnage pacman(0, 0, "UP");
     while(true){
         std::string saisie;
         std::getline(std::cin, saisie);
+        pacman.set(saisie);
         try{
-            deplacer_personnage(x_addr, y_addr, saisie);
+            pacman.new_pos();
         }
         catch(ExceptionBounds){
             std::cout << "Hors limite";
@@ -77,6 +66,10 @@ int main(int argc, char** argv)
             std::cout << "Commande non reconnue";
         }
     }
+
+
+
+
     try {
         if(nb_éléments<=0)
             throw(ExceptionSizeTab);
@@ -97,42 +90,7 @@ int main(int argc, char** argv)
     return 0;
 }
 
-bool deplacer_personnage(int& x, int& y, std::string cmd)
-{
 
-    if (cmd=="UP"){
-        if((y-1)> ymin){
-            throw ExceptionBounds();
-        }else{
-            y-=1;
-            return true;
-        }
-    }else if (cmd=="DOWN"){
-        if((y+1)> ymax){
-            throw ExceptionBounds();
-        }else{
-            y+=1;
-            return true;
-        }
-    }else if (cmd=="RIGHT"){
-        if((x+1)> xmax){
-            throw ExceptionBounds();
-        }else{
-            x+=1;
-            return true;
-        }
-    }else if (cmd=="LEFT"){
-        if((x-1)> xmin){
-            throw ExceptionBounds();
-        }else{
-            x-=1;
-            return true;
-        }
-    }else{
-        throw ExceptionCommand();
-    }
-
-}
 bool detecter_collision(int ennemis_x[], int ennemis_y[], int nb_ennemis, int x, int y, std::string cmd)
 {
     for(int i=0;i<nb_ennemis;i++)
