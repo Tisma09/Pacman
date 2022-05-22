@@ -8,7 +8,6 @@
 
 class ExceptionBounds{};
 class ExceptionCommand{};
-class ennemis_negatifs{};
 class ExceptionSizeTab{};
 
 #endif // EXCEPTION_H

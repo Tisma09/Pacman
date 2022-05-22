@@ -1,6 +1,3 @@
-#include <iostream>
-#include <string>
-
 #include "personnage.h"
 #include "exception.h"
 
@@ -40,8 +37,19 @@ void Personnage::new_pos()
     }else{
         throw ExceptionCommand();
     }
+    NotifierCollision::notify(pos_x, pos_y);
 }
 
 void Personnage::set(std::string cmd){
     Personnage::CurrentDeplacment = cmd;
+}
+void Personnage::collision(){
+    std::cout << "Y a collision" << std::endl;
+}
+bool Personnage::testCollision(int x, int y){
+    if(pos_x == x && pos_y == y){
+        return true;
+    }else{
+        return false;
+    }
 }

@@ -1,6 +1,29 @@
-#include <iostream>
-#include <string>
-#include <random>
-#include <ctime>
 
 #include "ennemi.h"
+
+Ennemi::Ennemi(int x, int y){
+    pos_x=x;
+    pos_y=y;
+}
+
+int Ennemi::getX(){
+    return pos_x;
+}
+int Ennemi::getY(){
+    return pos_y;
+}
+
+void Ennemi::deplacer(int x, int y){
+    pos_x=x;
+    pos_y=y;
+}
+void Ennemi::collision(){
+    std::cout << "Y a collision" << std::endl;
+}
+bool Ennemi::testCollision(int x, int y){
+    if(pos_x == x && pos_y == y){
+        return true;
+    }else{
+        return false;
+    }
+}

@@ -1,16 +1,13 @@
 #ifndef CLYDE_H
 #define CLYDE_H
 
-#include <iostream>
-#include <string>
-#include <random>
-#include <ctime>
-
 #include "ennemi.h"
+#include "exception.h"
 
 
 class Clyde: public Ennemi{
-private:
+public:
+    Clyde(int x, int y);
     void new_pos();
 };
 

@@ -15,43 +15,19 @@
 
 
 
-
-bool deplacer_personnage(int* x, int* y, std::string cmd);
-
-
-
-
-
 bool detecter_collision(int ennemis_x[], int ennemis_y[], int nb_ennemis, int x, int y );
-
-void exeption_nb_ennemis(int nb_ennemis)
-{
-    if(nb_ennemis <= 0)
-        throw ennemis_negatifs();
-}
-
+bool deplacer_personnage(int* x, int* y, std::string cmd);
 
 int main(int argc, char** argv)
 {
-    int x=5, y=4;
-    int nb_éléments;
-    int enn_x[4] = {1, 2, 3, 4}, enn_y[4]= {1, 2, 3, 4};
-
-    try
-    {
-        exeption_nb_ennemis(4);
-    }
-    catch (ennemis_negatifs&)
-       {
-           std::cout << "Nombre d'ennemis incorrect" << std::endl;
-       }
-
-    if (detecter_collision(enn_x, enn_y, 4, x, y) == true)
-    {
-        std::cout << "Collision" << std::endl;
-    }
-
     Personnage pacman(0, 0, "UP");
+    Clyde Clydi1(5, 5);
+    Clyde Clydi2(10, 10);
+    Clydi1.addObserver(pacman);
+    Clydi2.addObserver(pacman);
+    pacman.addObserver(Clydi1);
+    pacman.addObserver(Clydi2);
+
     while(true){
         std::string saisie;
         std::getline(std::cin, saisie);
@@ -70,36 +46,73 @@ int main(int argc, char** argv)
 
 
 
-    try {
-        if(nb_éléments<=0)
-            throw(ExceptionSizeTab);
+    int x=5, y=4;
+    int nb_éléments=4;
+    int enn_x[4] = {1, 2, 3, 4}, enn_y[4]= {1, 2, 3, 4};
+    try
+    {
+        if (detecter_collision(enn_x, enn_y, nb_éléments, x, y) == true)
+        {
+            std::cout << "Collision" << std::endl;
+        }
     }
     catch(ExceptionSizeTab){
-        std::cout << "Nombre d'élements incorrect" << std::endl;
+           std::cout << "Nombre d'ennemis incorrect" << std::endl;
     }
-    try {
-        detecter_collision(enn_x, enn_y, 4, x, y);
-    }
-    catch () {
-    }
-    try {
-        detecter_collision(enn_x, enn_y, -1, x, y);
-    }
-    catch () {
-    }
-    return 0;
 }
 
 
 bool detecter_collision(int ennemis_x[], int ennemis_y[], int nb_ennemis, int x, int y, std::string cmd)
 {
+    bool collision = false;
+    if(nb_ennemis <= 0)
+        throw ExceptionSizeTab();
     for(int i=0;i<nb_ennemis;i++)
     {
         if(ennemis_x[i] == x && ennemis_y[i] == y)
-            return true;
-        else
-            return false;
+            collision = true;
+    }
+    if(collision == true){
+        return true;
+    }else{
+        return false;
     }
 }
 
+bool deplacer_personnage(int& x, int& y, std::string cmd)
+{
+
+    if (cmd=="UP"){
+        if((y-1)> ymin){
+            throw ExceptionBounds();
+        }else{
+            y-=1;
+            return true;
+        }
+    }else if (cmd=="DOWN"){
+        if((y+1)> ymax){
+            throw ExceptionBounds();
+        }else{
+            y+=1;
+            return true;
+        }
+    }else if (cmd=="RIGHT"){
+        if((x+1)> xmax){
+            throw ExceptionBounds();
+        }else{
+            x+=1;
+            return true;
+        }
+    }else if (cmd=="LEFT"){
+        if((x-1)> xmin){
+            throw ExceptionBounds();
+        }else{
+            x-=1;
+            return true;
+        }
+    }else{
+        throw ExceptionCommand();
+    }
+
+}
 

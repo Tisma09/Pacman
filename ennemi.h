@@ -3,15 +3,20 @@
 
 #include <iostream>
 #include <string>
-#include <random>
-#include <ctime>
+#include "observercollision.h"
+#include "notifiercollision.h"
 
-class Ennemi {
+class Ennemi : public ObserverCollision, public NotifierCollision{
 private:
     int pos_x, pos_y;
 public:
-    virtual void new_pos();
-    int deplacer(int x, int y);
+    Ennemi(int x, int y);
+    virtual void new_pos()=0;
+    int getX();
+    int getY();
+    void deplacer(int x, int y);
+    bool testCollision(int x, int y);
+    void collision();
 };
 
 #endif
