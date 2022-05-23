@@ -20,6 +20,11 @@ bool deplacer_personnage(int* x, int* y, std::string cmd);
 
 int main(int argc, char** argv)
 {
+    QApplication a(argc, argv);
+        MainWindow w;
+        w.show();
+        return a.exec();
+
     Personnage pacman(0, 0, "UP");
     Clyde Clydi1(5, 5);
     Clyde Clydi2(10, 10);
