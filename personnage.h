@@ -5,17 +5,19 @@
 #include <string>
 #include "notifiercollision.h"
 #include "observercollision.h"
+#include "interactive.h"
 
-class Personnage : public NotifierCollision, public ObserverCollision{
+class Personnage : public Interactive, public NotifierCollision, public ObserverCollision{
 private:
-    int pos_x, pos_y;
     std::string CurrentDeplacment;
 public:
-    Personnage(int x, int y, std::string CurrentDeplacment);
+    Personnage(int x, int y, std::string CurrentDeplacment, Background *parent);
     void new_pos();
-    void set(std::string cmd);
+    void arrow_pressed(std::string cmd);
+    void key_pressed(char key);
     bool testCollision(int x, int y);
     void collision();
+    void update_pos();
 };
 
 #endif

@@ -2,10 +2,9 @@
 #include "exception.h"
 
 
-Personnage::Personnage(int x, int y, std::string NewDeplacment){
-    pos_x=x;
-    pos_y=y;
+Personnage::Personnage(int x, int y, std::string NewDeplacment, Background* parent) : Interactive(x,y, parent){
     CurrentDeplacment=NewDeplacment;
+    set_background_color(1, 3, 3);
 };
 
 void Personnage::new_pos()
@@ -40,8 +39,11 @@ void Personnage::new_pos()
     NotifierCollision::notify(pos_x, pos_y);
 }
 
-void Personnage::set(std::string cmd){
+void Personnage::arrow_pressed(std::string cmd){
     Personnage::CurrentDeplacment = cmd;
+}
+void Personnage::key_pressed(char key){
+    throw ExceptionCommand();
 }
 void Personnage::collision(){
     std::cout << "Y a collision" << std::endl;
@@ -52,4 +54,8 @@ bool Personnage::testCollision(int x, int y){
     }else{
         return false;
     }
+}
+
+void Personnage::update_pos(){
+    new_pos();
 }
