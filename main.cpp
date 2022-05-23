@@ -24,7 +24,7 @@ int main(int argc, char** argv)
         MainWindow w;
         w.show();
         return a.exec();
-
+/*
     Personnage pacman(0, 0, "UP");
     Clyde Clydi1(5, 5);
     Clyde Clydi2(10, 10);
@@ -47,7 +47,7 @@ int main(int argc, char** argv)
             std::cout << "Commande non reconnue";
         }
     }
-
+*/
 
 
 

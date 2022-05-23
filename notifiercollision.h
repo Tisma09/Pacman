@@ -13,7 +13,7 @@ private:
 public:
     NotifierCollision();
     void addObserver(ObserverCollision Obs);
-    void removeObserver(ObserverCollision Obs);
+    void removeObserver(int num);
     void notify(int x, int y);
 };
 

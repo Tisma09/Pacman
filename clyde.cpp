@@ -3,7 +3,7 @@
 
 #include "clyde.h"
 
-Clyde::Clyde(int x, int y): Ennemi(x, y){
+Clyde::Clyde(int x, int y, Background* parent): Ennemi(x, y, parent){
 }
 
 void Clyde::new_pos(){
