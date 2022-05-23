@@ -55,3 +55,7 @@ bool Personnage::testCollision(int x, int y){
         return false;
     }
 }
+
+void Personnage::update_pos(){
+    new_pos();
+}

@@ -17,6 +17,7 @@ public:
     void key_pressed(char key);
     bool testCollision(int x, int y);
     void collision();
+    void update_pos();
 };
 
 #endif
