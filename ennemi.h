@@ -5,15 +5,17 @@
 #include <string>
 #include "observercollision.h"
 #include "notifiercollision.h"
+#include "regularmove.h"
 
-class Ennemi : public ObserverCollision, public NotifierCollision{
+class Ennemi : public RegularMove, public ObserverCollision, public NotifierCollision{
 private:
     int pos_x, pos_y;
 public:
-    Ennemi(int x, int y);
+    Ennemi(int x, int y, Background* parent);
     virtual void new_pos()=0;
     int getX();
     int getY();
+    void update_pos();
     void deplacer(int x, int y);
     bool testCollision(int x, int y);
     void collision();
