@@ -8,6 +8,7 @@ class ObserverCollision
 private:
 public:
     ObserverCollision();
+    ~ObserverCollision();
     virtual void collision();
     virtual bool testCollision(int x, int y);
 };
