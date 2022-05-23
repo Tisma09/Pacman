@@ -27,6 +27,7 @@ SOURCES += \
     movable.cpp \
     notifiercollision.cpp \
     observercollision.cpp \
+    pastille.cpp \
     personnage.cpp \
     regularmove.cpp \
     mainwindow.cpp
@@ -52,6 +53,7 @@ HEADERS += \
     movable.h \
     notifiercollision.h \
     observercollision.h \
+    pastille.h \
     personnage.h \
     regularmove.h \
     mainwindow.h
