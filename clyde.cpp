@@ -10,29 +10,29 @@ void Clyde::new_pos(){
     srand(time(NULL));
     int val = rand() % 4;
     if (val==0){
-        if((getY()-1)> ymin){
+        if((pos_y-1)> ymin){
             throw ExceptionBounds();
         }else{
-            deplacer(getY()-1, getX());
+            pos_y-=1;
         }
     }else if (val==1){
-        if((getY()+1)> ymax){
+        if((pos_y+1)> ymax){
             throw ExceptionBounds();
         }else{
-            deplacer(getY()+1, getX());
+            pos_y+=1;
         }
     }else if (val==2){
-        if((getX()+1)> xmax){
+        if((pos_x+1)> xmax){
             throw ExceptionBounds();
         }else{
-            deplacer(getY(), getX()+1);
+            pos_x+=1;
         }
     }else{
-        if((getX()-1)> xmin){
+        if((pos_x-1)> xmin){
             throw ExceptionBounds();
         }else{
-            deplacer(getY(), getX()-1);
+            pos_x-=1;
         }
     }
-    notify(getX(), getY());
+    notify(pos_x, pos_y);
 }

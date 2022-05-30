@@ -3,6 +3,7 @@
 
 NotifierCollision::NotifierCollision()
 {
+    std::vector<ObserverCollision> ListObserver{};
 }
 
 void NotifierCollision::addObserver(ObserverCollision Obs){

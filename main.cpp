@@ -64,10 +64,11 @@ int main(int argc, char** argv)
     catch(ExceptionSizeTab){
            std::cout << "Nombre d'ennemis incorrect" << std::endl;
     }
+    return 0;
 }
 
 
-bool detecter_collision(int ennemis_x[], int ennemis_y[], int nb_ennemis, int x, int y, std::string cmd)
+bool detecter_collision(int ennemis_x[], int ennemis_y[], int nb_ennemis, int x, int y)
 {
     bool collision = false;
     if(nb_ennemis <= 0)

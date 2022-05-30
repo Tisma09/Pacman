@@ -11,8 +11,6 @@ class Ennemi : public RegularMove, public ObserverCollision, public NotifierColl
 public:
     Ennemi(int x, int y, Background* parent);
     virtual void new_pos()=0;
-    int getX();
-    int getY();
     void update_pos();
     void deplacer(int x, int y);
     bool testCollision(int x, int y);
