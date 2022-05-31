@@ -9,10 +9,10 @@
 class NotifierCollision
 {
 private:
-    std::vector<ObserverCollision> ListObserver;
+    std::vector<ObserverCollision*> ListObserver;
 public:
     NotifierCollision();
-    void addObserver(ObserverCollision Obs);
+    void addObserver(ObserverCollision& Obs);
     void removeObserver(int num);
     void notify(int x, int y);
 };

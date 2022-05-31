@@ -34,9 +34,9 @@ int main(int argc, char** argv)
     pacman.addObserver(Clydi2);
 
     while(true){
-        std::string saisie;
-        std::getline(std::cin, saisie);
-        pacman.set(saisie);
+        //std::string saisie;
+        //std::getline(std::cin, saisie);
+        //pacman.set(saisie);
         try{
             pacman.new_pos();
         }
@@ -47,7 +47,7 @@ int main(int argc, char** argv)
             std::cout << "Commande non reconnue";
         }
     }
-*/
+
 
 
 
@@ -64,6 +64,8 @@ int main(int argc, char** argv)
     catch(ExceptionSizeTab){
            std::cout << "Nombre d'ennemis incorrect" << std::endl;
     }
+
+    */
     return 0;
 }
 
