@@ -7,29 +7,28 @@ Clyde::Clyde(int x, int y, Background* parent): Ennemi(x, y, parent){
 }
 
 void Clyde::new_pos(){
-    srand(time(NULL));
     int val = rand() % 4;
     if (val==0){
         if((pos_y-1)< ymin){
-            //throw ExceptionBounds();
+            pos_y=14;
         }else{
             pos_y-=1;
         }
     }else if (val==1){
         if((pos_y+1)> ymax){
-            //throw ExceptionBounds();
+            pos_y=0;
         }else{
             pos_y+=1;
         }
     }else if (val==2){
         if((pos_x+1)> xmax){
-            //throw ExceptionBounds();
+            pos_x=0;
         }else{
             pos_x+=1;
         }
     }else{
         if((pos_x-1)< xmin){
-            //throw ExceptionBounds();
+            pos_x=31;
         }else{
             pos_x-=1;
         }

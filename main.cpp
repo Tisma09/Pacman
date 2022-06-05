@@ -10,6 +10,9 @@
 #include "personnage.h"
 #include "ennemi.h"
 #include "clyde.h"
+#include <random>
+#include <ctime>
+#include <iostream>
 
 
 
@@ -20,6 +23,7 @@ bool deplacer_personnage(int* x, int* y, std::string cmd);
 
 int main(int argc, char** argv)
 {
+    srand(time(NULL));
     QApplication a(argc, argv);
         MainWindow w;
         w.show();

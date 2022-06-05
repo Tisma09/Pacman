@@ -16,7 +16,7 @@ public:
     void arrow_pressed(std::string cmd);
     void key_pressed(char key);
     bool testCollision(int x, int y);
-    void collision();
+    void collision(NotifierCollision *Collisionner);
     void update_pos();
 };
 

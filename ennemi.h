@@ -14,7 +14,7 @@ public:
     void update_pos();
     void deplacer(int x, int y);
     bool testCollision(int x, int y);
-    void collision();
+    void collision(NotifierCollision *Collisionner);
 };
 
 #endif
