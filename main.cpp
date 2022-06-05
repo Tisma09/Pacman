@@ -10,6 +10,9 @@
 #include "personnage.h"
 #include "ennemi.h"
 #include "clyde.h"
+#include <random>
+#include <ctime>
+#include <iostream>
 
 
 
@@ -20,6 +23,12 @@ bool deplacer_personnage(int* x, int* y, std::string cmd);
 
 int main(int argc, char** argv)
 {
+    srand(time(NULL));
+    QApplication a(argc, argv);
+        MainWindow w;
+        w.show();
+        return a.exec();
+/*
     Personnage pacman(0, 0, "UP");
     Clyde Clydi1(5, 5);
     Clyde Clydi2(10, 10);
@@ -29,9 +38,9 @@ int main(int argc, char** argv)
     pacman.addObserver(Clydi2);
 
     while(true){
-        std::string saisie;
-        std::getline(std::cin, saisie);
-        pacman.set(saisie);
+        //std::string saisie;
+        //std::getline(std::cin, saisie);
+        //pacman.set(saisie);
         try{
             pacman.new_pos();
         }
@@ -59,10 +68,13 @@ int main(int argc, char** argv)
     catch(ExceptionSizeTab){
            std::cout << "Nombre d'ennemis incorrect" << std::endl;
     }
+
+    */
+    return 0;
 }
 
 
-bool detecter_collision(int ennemis_x[], int ennemis_y[], int nb_ennemis, int x, int y, std::string cmd)
+bool detecter_collision(int ennemis_x[], int ennemis_y[], int nb_ennemis, int x, int y)
 {
     bool collision = false;
     if(nb_ennemis <= 0)

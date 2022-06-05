@@ -2,9 +2,9 @@
 #define EXCEPTION_H
 
 #define xmin 0
-#define xmax 32
+#define xmax 31
 #define ymin 0
-#define ymax 15
+#define ymax 14
 
 class ExceptionBounds{};
 class ExceptionCommand{};

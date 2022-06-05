@@ -3,36 +3,36 @@
 
 #include "clyde.h"
 
-Clyde::Clyde(int x, int y): Ennemi(x, y){
+Clyde::Clyde(int x, int y, Background* parent): Ennemi(x, y, parent){
 }
 
 void Clyde::new_pos(){
-    srand(time(NULL));
     int val = rand() % 4;
     if (val==0){
-        if((getY()-1)> ymin){
-            throw ExceptionBounds();
+        if((pos_y-1)< ymin){
+            pos_y=14;
         }else{
-            deplacer(getY()-1, getX());
+            pos_y-=1;
         }
     }else if (val==1){
-        if((getY()+1)> ymax){
-            throw ExceptionBounds();
+        if((pos_y+1)> ymax){
+            pos_y=0;
         }else{
-            deplacer(getY()+1, getX());
+            pos_y+=1;
         }
     }else if (val==2){
-        if((getX()+1)> xmax){
-            throw ExceptionBounds();
+        if((pos_x+1)> xmax){
+            pos_x=0;
         }else{
-            deplacer(getY(), getX()+1);
+            pos_x+=1;
         }
     }else{
-        if((getX()-1)> xmin){
-            throw ExceptionBounds();
+        if((pos_x-1)< xmin){
+            pos_x=31;
         }else{
-            deplacer(getY(), getX()-1);
+            pos_x-=1;
         }
     }
-    notify(getX(), getY());
+    positionner(pos_x, pos_y);
+    notify(pos_x, pos_y);
 }

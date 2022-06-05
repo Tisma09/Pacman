@@ -2,14 +2,15 @@
 #define OBSERVERCOLLISION_H
 #include <iostream>
 #include <string>
+class NotifierCollision;
 
 class ObserverCollision
 {
-private:
 public:
     ObserverCollision();
-    virtual void collision();
-    virtual bool testCollision(int x, int y);
+    ~ObserverCollision();
+    virtual void collision(NotifierCollision *Collisionner)=0;
+    virtual bool testCollision(int x, int y)=0;
 };
 
 #endif // OBSERVERCOLLISION_H
